@@ -8,19 +8,19 @@ pipeline {
         PATH = "/opt/apache-maven-3.9.6/bin:$PATH"
     }
     stages {
-        stage("build"){
+        stage("build") {
             steps {
                 echo "----------- build started ----------"
                 sh 'mvn clean package -Dmaven.test.skip=true'
-                echo "------------;;- build completed ---;;-------"
+                echo "------------ build completed ----------"
             }
         }
     
-    stage('SonarQube analysis') {
+        stage('SonarQube analysis') {
             environment {
                 scannerHome = tool 'sonar-scanner-meportal'
             }
-            steps{
+            steps {
                 withSonarQubeEnv('sonar-server-meportal') {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
@@ -28,4 +28,3 @@ pipeline {
         }
     }
 }
-      

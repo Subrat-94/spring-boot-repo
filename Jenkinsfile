@@ -10,9 +10,9 @@ pipeline {
     stages {
         stage("build") {
             steps {
-                echo "----------- build started ----------"
+                echo "---------- build started ----------"
                 sh 'mvn clean package -Dmaven.test.skip=true'
-                echo "--------------- build completed ----------"
+                echo "------------- build completed ----------"
             }
         }
     

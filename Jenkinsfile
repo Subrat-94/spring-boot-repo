@@ -69,7 +69,7 @@ pipeline {
             steps {
                 script {
                     echo '-------------- Docker Build Started -------------'
-                    app = docker.build("qwerasdfs.jfrog.io/imageportal-docker-local/myapp:1.0")
+                    app = docker.build("qwerasdfs.jfrog.io/artifactory/imageportal-docker-local/myapp:1.0")
                     echo '-------------- Docker Build Ended -------------'
                 }
             }
@@ -79,7 +79,7 @@ pipeline {
             steps {
                 script {
                         echo '---------- Docker Publish Started --------'  
-                        docker.withRegistry("https://qwerasdfs.jfrog.io", 'jfrog-cred'){
+                        docker.withRegistry("https://qwerasdfs.jfrog.io/artifactory/imageportal-docker/", 'jfrog-cred'){
                         app.push()
                         echo '------------ Docker Publish Ended ---------'  
                     }    

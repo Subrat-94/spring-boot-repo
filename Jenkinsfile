@@ -63,6 +63,27 @@ pipeline {
                     server.publishBuildInfo(buildInfo)
                     echo '------------ Artifact Publish Ended -----------'  
                 }
+            }
+
+                stage(" Create Docker Image ") {
+            steps {
+                script {
+                    echo '-------------- Docker Build Started -------------'
+                    app = docker.build("qwerasdfs.jfrog.io/imageportal-docker-local/myapp:1.0")
+                    echo '-------------- Docker Build Ended -------------'
+                }
+            }
+        }
+
+        stage (" Docker Publish "){
+            steps {
+                script {
+                        echo '---------- Docker Publish Started --------'  
+                        docker.withRegistry("https://qwerasdfs.jfrog.io", 'jfrog-cred'){
+                        app.push()
+                        echo '------------ Docker Publish Ended ---------'  
+                    }    
+                }
             }   
         }
 

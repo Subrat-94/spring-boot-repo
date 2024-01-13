@@ -61,7 +61,7 @@ pipeline {
                     def buildInfo = server.upload(uploadSpec)
                     buildInfo.env.collect()
                     server.publishBuildInfo(buildInfo)
-                    echo '------------ Artifact Publish Ended -----------'  
+                    echo '------------- Artifact Publish Ended -----------'  
                 }
             }
         }
@@ -79,7 +79,7 @@ pipeline {
         stage (" Docker Publish "){
             steps {
                 script {
-                        echo '---------- Docker Publish Started --------'  
+                        echo '----------- Docker Publish Started --------'  
                         docker.withRegistry("https://qwerasdfs.jfrog.io", 'jfrog-cred'){
                         app.push()
                         echo '------------ Docker Publish Ended ---------'  

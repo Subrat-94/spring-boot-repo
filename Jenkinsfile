@@ -70,7 +70,7 @@ pipeline {
             steps {
                 script {
                     echo '-------------- Docker Build Started -------------'
-                    app = docker.build("qwerasdfs.jfrog.io/imageportal-docker-local/myapp:1.0.3")
+                    app = docker.build("qwerasdfs.jfrog.io/imageportal-docker-local/myapp:1.0.2")
                     echo '-------------- Docker Build Ended -------------'
                 }
             }
@@ -87,13 +87,22 @@ pipeline {
                 }
             }   
         }
-
+/*
         stage ("Deploy Stage"){
             steps {
                 script {
                     sh './deploy.sh'
                 }    
             }
+        }*/
+        stage(" Deploy ") {
+            steps {
+                script {
+                        echo '<--------------- Helm Deploy Started --------------->'
+                        sh 'helm install meportal  meportal-1.0.2.tgz '
+                        echo '<--------------- Helm deploy Ends --------------->'
+                    }
+                }
+            }
         }
     }
-}

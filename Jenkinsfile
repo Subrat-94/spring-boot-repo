@@ -70,7 +70,7 @@ pipeline {
             steps {
                 script {
                     echo '-------------- Docker Build Started -------------'
-                    app = docker.build("qwerasdfs.jfrog.io/imageportal-docker-local/myapp:1.0.4")
+                    app = docker.build("qwerasdfs.jfrog.io/imageportal-docker-local/myapp:1.0.5")
                     echo '-------------- Docker Build Ended -------------'
                 }
             }
